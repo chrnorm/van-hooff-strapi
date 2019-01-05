@@ -34,6 +34,7 @@ npm run lint
 ## Server setup
 ```
 strapi new server
+strapi install graphql
 ```
 
 ### Running the server
