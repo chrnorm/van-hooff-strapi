@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <ul>
-      <router-link tag="li" to="/" exact>Deliveroo clone</router-link>
+      <router-link tag="li" to="/" exact>Testing Strapi</router-link>
     </ul>
   </header>
 </template>
