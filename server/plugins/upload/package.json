@@ -21,7 +21,7 @@
   "_resolved": "https://registry.npmjs.org/strapi-plugin-upload/-/strapi-plugin-upload-3.0.0-alpha.17.tgz",
   "_shasum": "2c54346fd51467804dc6cfbee6a869fe68936ab4",
   "_spec": "strapi-plugin-upload@3.0.0-alpha.17",
-  "_where": "/Users/driesbos/Web Projects/testing-strapi/server",
+  "_where": "/Users/driesbos/Web Projects/van-hooff-strapi/server",
   "author": {
     "name": "A Strapi developer"
   },

@@ -22,6 +22,12 @@
       "via": "related",
       "plugin": "upload",
       "required": false
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   }
 }

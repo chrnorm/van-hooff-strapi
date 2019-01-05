@@ -101,6 +101,7 @@ type Project {
   title: String
   text: String
   cover: UploadFile
+  images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
 type ProjectAggregator {
@@ -156,6 +157,7 @@ input ProjectInput {
   title: String
   text: String
   cover: ID
+  images: [ID]
 }
 
 type Query {

@@ -21,7 +21,7 @@
   "_resolved": "https://registry.npmjs.org/strapi-plugin-graphql/-/strapi-plugin-graphql-3.0.0-alpha.17.tgz",
   "_shasum": "e9ec8c7312fa0772d535ae154e5b9ff4620f1c7a",
   "_spec": "strapi-plugin-graphql@3.0.0-alpha.17",
-  "_where": "/Users/driesbos/Web Projects/testing-strapi/server",
+  "_where": "/Users/driesbos/Web Projects/van-hooff-strapi/server",
   "author": {
     "name": "A Strapi developer"
   },
