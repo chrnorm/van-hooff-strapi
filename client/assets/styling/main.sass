@@ -35,13 +35,9 @@ img
 .home
   width: 100%
   height: calc(100vh - (2 * #{$spacing}))
-  cursor: url("~/assets/images/enter.png") 0 0, pointer
-  cursor: url("~/assets/images/enter.svg") 0 0, pointer
-  cursor: -webkit-image-set(url("~/assets/images/enter.png") 1x, url("~/assets/images/enter@2x.png") 2x) 0 0, pointer
+  cursor: pointer
   .logo
-    cursor: url("~/assets/images/enter.png") 0 0, pointer
-    cursor: url("~/assets/images/enter.svg") 0 0, pointer
-    cursor: -webkit-image-set(url("~/assets/images/enter.png") 1x, url("~/assets/images/enter@2x.png") 2x) 0 0, pointer
+    cursor: pointer
   img
     width: 100%
     height: 100%
@@ -146,71 +142,3 @@ img
 #show-modal
   padding-top: 200px
   z-index: 100
-
-// MODAL
-.modal
-  &-Container
-    position: fixed
-    z-index: 990
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-    background: hsla(0, 50%, 100%, 1)
-  &-CloseBackground
-    position: absolute
-    width: 100%
-    height: 100%
-    padding: $spacing
-    cursor: url(~/assets/images/close-icon.svg), zoom-out
-  &-Close
-    position: fixed
-    z-index: 999
-    top: 0
-    left: 0
-    padding: $spacing
-    cursor: pointer
-    img
-      width: 18px
-      height: 18px
-  &-Content
-    height: 100%
-    width: 100%
-
-// SLIDER
-.slider-Container
-  position: relative
-  z-index: 995
-  // width: 100%
-  height: 100%
-.image-Slider
-  position: absolute
-  top: 0
-  left: 0
-  // width: 100%
-  height: 100%
-  img
-    width: 100%
-    height: 100%
-    object-fit: contain
-    object-position: center center
-
-.image-Slider_Nav
-  position: absolute
-  width: 33%
-  top: 0
-  bottom: 0
-  cursor: pointer
-.image-Slider_Prev
-  left: 0
-  cursor: url(~/assets/images/prev-icon.svg), w-resize
-.image-Slider_Close
-  left: 50%
-  transform: translateX(-50%)
-    // cursor: url("cursor.png") 0 0, pointer
-    // cursor: url("cursor.svg") 0 0, pointer
-    // cursor: -webkit-image-set(url("cursor.png") 1x, url("~/assets/images/close.png") 2x) 0 0, pointer
-  cursor: url(~/assets/images/close-icon.svg), zoom-out
-.image-Slider_Next
-  right: 0
-  cursor: url(~/assets/images/next-icon.svg), e-resize
