@@ -29,7 +29,7 @@ export default {
     const response = await strapi.request('post', '/graphql', {
       data: {
         query: `query {
-            projects(id: "${params.id}") {
+            project(id: "${params.id}") {
               _id
               title
               text
@@ -44,7 +44,7 @@ export default {
           `
       }
     })
-    response.data.projects.forEach(project => {
+    response.data.project.forEach(project => {
       project.cover.url = `${apiUrl}${project.cover.url}`
       store.commit('projects/add', {
         id: project.id || project._id,

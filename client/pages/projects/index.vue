@@ -9,10 +9,10 @@
           v-for="project in filteredList"
           :key="project.id"
         >
+          <img :src="project.cover.url">
           <h1 class="card-title">{{ project.title }}</h1>
           <p class="card-text">{{ project.text }}</p>
-          <p>{{ project.cover.url }}</p>
-          <p>{{ project.images.url }}</p>
+          <img :src="project.images.url">
         </router-link>
       </ul>
     </div>
