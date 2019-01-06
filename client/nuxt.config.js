@@ -16,6 +16,8 @@ module.exports = {
   css: [
     '~/assets/styling/reset.css',
     '~/assets/styling/variables.sass',
+    '~/assets/styling/typography.sass',
+    '~/assets/styling/transitions.sass',
     '~/assets/styling/main.sass'
   ],
   /*
