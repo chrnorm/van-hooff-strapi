@@ -13,7 +13,7 @@
         <li></li>
       </router-link>
 
-      <ul class="menu menu-Filter" v-if="this.$route.path === '/Products'">
+      <ul class="menu menu-Filter" v-if="this.$route.path === '/projects'">
         <li>
           <p @click="$bus.$emit('filterClick')">
             <span>All Projects</span>
@@ -74,9 +74,9 @@
 
       <ul
         class="menu menu-Filter"
-        v-if="this.$route.path === '/Profile' || this.$route.path === '/Product'"
+        v-if="this.$route.path === '/Profile' || this.$route.path === '/project'"
       >
-        <router-link tag="li" to="/Products" class="menu-arrow">
+        <router-link tag="li" to="/projects" class="menu-arrow">
           <img class="arrow" src="@/assets/images/arrow.png">
           <p>
             <span>Index</span>

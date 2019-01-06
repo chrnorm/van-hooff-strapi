@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Header from '~/components/TempHeader.vue'
+import Header from '~/components/HeaderItem.vue'
 export default {
   components: {
     Header
@@ -14,5 +14,10 @@ export default {
 }
 </script>
 
+<style lang="sass">
+@import '~/assets/styling/main.sass'
 
+#__layout
+  padding: $spacing
+</style>
 

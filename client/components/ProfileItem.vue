@@ -5,7 +5,7 @@
         <li>
           <div class="product-Image" @click="showModal = true">
             <!-- <img src="@/assets/images/ryan-walton-520633-unsplash.jpg"> -->
-            <img src="@/assets/images/simone-hutsch-507369-unsplash.jpg">
+            <img src="@/assets/images/tucker-good-589776-unsplash.jpg">
           </div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             <br>
@@ -25,10 +25,11 @@
 </template>
 
 <script>
-import ModalItem from '@/components/ModalItem.vue'
-import SliderItem from '@/components/SliderItem.vue'
+import ModalItem from "@/components/ModalItem.vue";
+import SliderItem from "@/components/SliderItem.vue";
 
 export default {
+  name: "ProfileItem",
   components: {
     SliderItem,
     ModalItem
@@ -36,7 +37,7 @@ export default {
   data() {
     return {
       showModal: false
-    }
+    };
   }
-}
+};
 </script>

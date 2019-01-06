@@ -89,7 +89,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionTitle | ProfileConnectionText | ProfileConnectionCover | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnection_id | ProjectConnectionCreatedAt | ProjectConnectionUpdatedAt | ProjectConnectionTitle | ProjectConnectionText | ProjectConnectionCover | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionTitle | ProfileConnectionText | ProfileConnectionCover | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnection_id | ProjectConnectionCreatedAt | ProjectConnectionUpdatedAt | ProjectConnectionTitle | ProjectConnectionText | ProjectConnectionCover | ProjectConnectionCategory | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createProfile(input: createProfileInput): createProfilePayload
@@ -184,6 +184,7 @@ type Project {
   title: String
   text: String
   cover: UploadFile
+  category: String
   images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
@@ -199,6 +200,11 @@ type ProjectConnection {
 
 type ProjectConnection_id {
   key: ID
+  connection: ProjectConnection
+}
+
+type ProjectConnectionCategory {
+  key: String
   connection: ProjectConnection
 }
 
@@ -234,6 +240,7 @@ type ProjectGroupBy {
   title: [ProjectConnectionTitle]
   text: [ProjectConnectionText]
   cover: [ProjectConnectionCover]
+  category: [ProjectConnectionCategory]
 }
 
 input ProjectInput {
@@ -241,6 +248,7 @@ input ProjectInput {
   text: String
   cover: ID
   images: [ID]
+  category: String
 }
 
 type Query {

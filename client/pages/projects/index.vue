@@ -1,21 +1,24 @@
 <template>
-  <!-- projects -->
-  <div class="page-Container">
-    <div class="projectsList">
-      <ul>
-        <router-link
-          :to="{ name: 'projects-id', params: { id: project.id }}"
-          tag="li"
-          v-for="project in filteredList"
-          :key="project.id"
-        >
-          <img :src="project.cover.url">
-          <h1 class="card-title">{{ project.title }}</h1>
-          <p class="card-text">{{ project.text }}</p>
-          <img :src="project.images.url">
-        </router-link>
-      </ul>
-    </div>
+  <div class="productsItem">
+    <transition-group name="productlist" tag="ul">
+      <router-link
+        :to="{ name: 'projects-id', params: { id: project.id }}"
+        tag="li"
+        v-for="project in filteredList"
+        :key="project.id"
+      >
+        <img :src="project.cover.url">
+        <div class="product-TitleDate">
+          <div>
+            <h2>{{ project.title }}</h2>
+          </div>
+          <div>
+            <p>{{ project.category }}</p>
+          </div>
+        </div>
+        <p>{{ project.text }}</p>
+      </router-link>
+    </transition-group>
   </div>
 </template>
 
@@ -49,10 +52,8 @@ export default {
               _id
               title
               text
+              category
               cover {
-                url
-              }
-              images {
                 url
               }
             }
