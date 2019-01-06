@@ -48,7 +48,7 @@ export default {
     width: 100%
     height: 100%
     padding: $spacing
-    cursor: url(~/assets/images/close-icon.svg), zoom-out
+    // cursor: url(~/assets/images/close-icon.svg), zoom-out
   &-Close
     position: fixed
     z-index: 999
