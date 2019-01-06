@@ -13,10 +13,15 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  css: [
+    '~/assets/styling/reset.css',
+    '~/assets/styling/variables.sass',
+    '~/assets/styling/main.sass'
+  ],
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: 'red' },
   /*
   ** Build configuration
   */
