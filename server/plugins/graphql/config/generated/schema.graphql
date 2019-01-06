@@ -1,3 +1,11 @@
+input createProfileInput {
+  data: ProfileInput
+}
+
+type createProfilePayload {
+  profile: Profile
+}
+
 input createProjectInput {
   data: ProjectInput
 }
@@ -26,6 +34,14 @@ type createUserPayload {
 The `DateTime` scalar represents a date and time following the ISO 8601 standard
 """
 scalar DateTime
+
+input deleteProfileInput {
+  where: InputID
+}
+
+type deleteProfilePayload {
+  profile: Profile
+}
 
 input deleteProjectInput {
   where: InputID
@@ -73,9 +89,12 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnection_id | ProjectConnectionCreatedAt | ProjectConnectionUpdatedAt | ProjectConnectionTitle | ProjectConnectionText | ProjectConnectionCover | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionTitle | ProfileConnectionText | ProfileConnectionCover | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnection_id | ProjectConnectionCreatedAt | ProjectConnectionUpdatedAt | ProjectConnectionTitle | ProjectConnectionText | ProjectConnectionCover | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
+  createProfile(input: createProfileInput): createProfilePayload
+  updateProfile(input: updateProfileInput): updateProfilePayload
+  deleteProfile(input: deleteProfileInput): deleteProfilePayload
   createProject(input: createProjectInput): createProjectPayload
   updateProject(input: updateProjectInput): updateProjectPayload
   deleteProject(input: deleteProjectInput): deleteProjectPayload
@@ -92,6 +111,70 @@ type Mutation {
   updateUser(input: updateUserInput): updateUserPayload
   deleteUser(input: deleteUserInput): deleteUserPayload
   upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+type Profile {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  text: String
+  cover: UploadFile
+}
+
+type ProfileAggregator {
+  count: Int
+}
+
+type ProfileConnection {
+  values: [Profile]
+  groupBy: ProfileGroupBy
+  aggregate: ProfileAggregator
+}
+
+type ProfileConnection_id {
+  key: ID
+  connection: ProfileConnection
+}
+
+type ProfileConnectionCover {
+  key: ID
+  connection: ProfileConnection
+}
+
+type ProfileConnectionCreatedAt {
+  key: DateTime
+  connection: ProfileConnection
+}
+
+type ProfileConnectionText {
+  key: String
+  connection: ProfileConnection
+}
+
+type ProfileConnectionTitle {
+  key: String
+  connection: ProfileConnection
+}
+
+type ProfileConnectionUpdatedAt {
+  key: DateTime
+  connection: ProfileConnection
+}
+
+type ProfileGroupBy {
+  _id: [ProfileConnection_id]
+  createdAt: [ProfileConnectionCreatedAt]
+  updatedAt: [ProfileConnectionUpdatedAt]
+  title: [ProfileConnectionTitle]
+  text: [ProfileConnectionText]
+  cover: [ProfileConnectionCover]
+}
+
+input ProfileInput {
+  title: String
+  text: String
+  cover: ID
 }
 
 type Project {
@@ -161,6 +244,9 @@ input ProjectInput {
 }
 
 type Query {
+  profile(id: ID!): Profile
+  profiles(sort: String, limit: Int, start: Int, where: JSON): [Profile]
+  profilesConnection(sort: String, limit: Int, start: Int, where: JSON): ProfileConnection
   project(id: ID!): Project
   projects(sort: String, limit: Int, start: Int, where: JSON): [Project]
   projectsConnection(sort: String, limit: Int, start: Int, where: JSON): ProjectConnection
@@ -185,6 +271,15 @@ input RoleInput {
   type: String
   permissions: [ID]
   users: [ID]
+}
+
+input updateProfileInput {
+  where: InputID
+  data: ProfileInput
+}
+
+type updateProfilePayload {
+  profile: Profile
 }
 
 input updateProjectInput {

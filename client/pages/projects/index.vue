@@ -1,6 +1,6 @@
 <template>
   <!-- projects -->
-  <section class="container">
+  <div class="page-Container">
     <div class="projectsList">
       <ul>
         <router-link
@@ -10,14 +10,13 @@
           :key="project.id"
         >
           <h1 class="card-title">{{ project.title }}</h1>
-          <p class="card-text">{{ project.text || 'No description provided' }}</p>
+          <p class="card-text">{{ project.text }}</p>
           <p>{{ project.cover.url }}</p>
           <p>{{ project.images.url }}</p>
         </router-link>
-        <p v-if="!filteredList.length">No results :(</p>
       </ul>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -71,17 +70,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.projectsList
-  ul
-    display: flex
-    flex-direction: column
-    li
-      padding: 3vmin
-      cursor: pointer
-      h1, p
-        margin-bottom: 1vmin
-      p:last-child
-        margin-bottom: 0
-</style>
