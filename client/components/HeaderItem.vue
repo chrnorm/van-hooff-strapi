@@ -74,7 +74,7 @@
 
       <ul
         class="menu menu-Filter"
-        v-if="this.$route.path === '/Profile' || this.$route.path === '/project'"
+        v-if="this.$route.name === 'profile' || this.$route.name === 'projects-id'"
       >
         <router-link tag="li" to="/projects" class="menu-arrow">
           <img class="arrow" src="@/assets/images/arrow.png">
