@@ -29,9 +29,9 @@
       "plugin": "upload",
       "required": false
     },
-    "category": {
-      "default": "",
-      "type": "string"
+    "categories": {
+      "model": "category",
+      "via": "project"
     }
   }
 }
