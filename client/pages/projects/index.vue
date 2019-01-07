@@ -13,7 +13,7 @@
             <h2>{{ project.title }}</h2>
           </div>
           <div>
-            <p>{{ project.category }}</p>
+            <p>project.category.title</p>
           </div>
         </div>
         <p>{{ project.text }}</p>
@@ -52,7 +52,6 @@ export default {
               _id
               title
               text
-              category
               cover {
                 url
               }
