@@ -11,10 +11,15 @@
               <h1>{{ project.title }}</h1>
             </div>
             <div>
-              <p>{{ project.category }}</p>
+              <!-- TODO: return project.category.title
+              <p>{{ project.category }}</p>-->
             </div>
           </div>
           <p class="productItem-Text">{{ project.text }}</p>
+          <!-- TODO: return project.images
+v          <div class="product-Image" @click="showModal = true">
+            <img :src="project.images">
+          </div>-->
           <div class="product-Footer">
             <router-link tag="div" to="/Product" class="product-Footer_Prev">
               <img class="arrow" src="@/assets/images/arrow.png">

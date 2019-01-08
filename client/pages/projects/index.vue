@@ -13,7 +13,8 @@
             <h2>{{ project.title }}</h2>
           </div>
           <div>
-            <p>project.category.title</p>
+            <!-- TODO: return project.category.title
+            <p>project.category.title</p>-->
           </div>
         </div>
         <p>{{ project.text }}</p>
