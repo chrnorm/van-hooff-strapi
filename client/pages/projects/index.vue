@@ -10,14 +10,13 @@
         <img :src="project.cover.url">
         <div class="product-TitleDate">
           <div>
-            <h2>{{ project.title }}</h2>
+            <h1>{{ project.title }}</h1>
           </div>
           <div>
-            <!-- TODO: return project.category.title
-            <p>project.category.title</p>-->
+            <p v-if="project.categories">{{ project.categories.title }}</p>
           </div>
         </div>
-        <p>{{ project.text }}</p>
+        <p v-if="project.text">{{ project.text }}</p>
       </router-link>
     </transition-group>
   </div>
@@ -41,6 +40,7 @@ export default {
       })
     },
     projects() {
+      console.log(this.$store.getters['projects/list'])
       return this.$store.getters['projects/list']
     }
   },
@@ -53,6 +53,9 @@ export default {
               _id
               title
               text
+              categories {
+                title
+              }
               cover {
                 url
               }

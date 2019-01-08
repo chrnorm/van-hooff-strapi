@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div>
     <div class="productItem">
       <ul :key="project.id" v-for="project in projects">
@@ -8,18 +8,22 @@
           </div>
           <div class="product-TitleDate">
             <div>
-              <h1>{{ project.title }}</h1>
+              <h1 v-if="project.title">{{ project.title }}</h1>
             </div>
             <div>
-              <!-- TODO: return project.category.title
-              <p>{{ project.category }}</p>-->
+              <!-- TODO: return project.category.title -->
+              <p v-if="project.categories">{{ project.categories.title }}</p>
             </div>
           </div>
-          <p class="productItem-Text">{{ project.text }}</p>
-          <!-- TODO: return project.images
-v          <div class="product-Image" @click="showModal = true">
-            <img :src="project.images">
-          </div>-->
+          <p class="productItem-Text" v-if="project.text">{{ project.text }}</p>
+          <div
+            v-for="( image,index ) in project.images"
+            class="product-Image"
+            @click="showModal = true"
+            :key="index"
+          >
+            <img :src="`${apiUrl}/${image.url}`">
+          </div>
           <div class="product-Footer">
             <router-link tag="div" to="/Product" class="product-Footer_Prev">
               <img class="arrow" src="@/assets/images/arrow.png">
@@ -53,7 +57,8 @@ export default {
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      apiUrl: apiUrl
     }
   },
   computed: {
@@ -62,6 +67,9 @@ export default {
     },
     projects() {
       return this.$store.getters['projects/list']
+    },
+    imageURL(image_url) {
+      return `${apiUrl}/${image_url}`
     }
   },
   async fetch({ store, params }) {
@@ -72,7 +80,9 @@ export default {
             project(id: "${params.id}") {
               _id
               title
-              category
+              categories {
+                title
+              }
               text
               cover {
                 url
