@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "profile",
   "info": {
     "name": "profile",
     "description": ""
@@ -11,17 +11,19 @@
   "attributes": {
     "title": {
       "default": "",
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "text": {
       "default": "",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "cover": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false
+      "required": true
     }
   }
 }

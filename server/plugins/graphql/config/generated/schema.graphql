@@ -2,7 +2,7 @@ type Category {
   _id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String
+  title: String!
   project: Project
 }
 
@@ -50,7 +50,7 @@ type CategoryGroupBy {
 }
 
 input CategoryInput {
-  title: String
+  title: String!
   project: ID
 }
 
@@ -192,8 +192,8 @@ type Profile {
   _id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String
-  text: String
+  title: String!
+  text: String!
   cover: UploadFile
 }
 
@@ -247,8 +247,8 @@ type ProfileGroupBy {
 }
 
 input ProfileInput {
-  title: String
-  text: String
+  title: String!
+  text: String!
   cover: ID
 }
 
@@ -256,8 +256,8 @@ type Project {
   _id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  title: String
-  text: String
+  title: String!
+  text: String!
   cover: UploadFile
   categories: Category
   images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
@@ -319,8 +319,8 @@ type ProjectGroupBy {
 }
 
 input ProjectInput {
-  title: String
-  text: String
+  title: String!
+  text: String!
   cover: ID
   images: [ID]
   categories: ID
