@@ -138,7 +138,10 @@ $spacing: 24px
   margin-left: $spacing
   margin-right: $spacing
   align-content: flex-start
+  transition: opacity .2s ease
   cursor: pointer
+  &:hover
+    opacity: .75
   li
     width: 24px
     height: 24px

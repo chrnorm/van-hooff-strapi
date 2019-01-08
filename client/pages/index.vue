@@ -27,3 +27,35 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+@import '~/assets/styling/variables.sass'
+
+.home
+  width: 100%
+  height: calc(100vh - (2 * #{$spacing}))
+  cursor: pointer
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: 50% 50%
+  .landing
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    display: inline-flex
+    padding: $spacing
+    .logo
+      width: calc((6vmin * 3) + (.5vmin * 3))
+      transition: opacity .2s ease
+      cursor: pointer
+      &:hover
+        opacity: .75
+      li
+        width: 6vmin
+        height: 6vmin
+        margin-right: .5vmin
+        margin-bottom: .5vmin
+</style>
