@@ -51,8 +51,14 @@ img
   li
     margin-bottom: calc(#{$spacing * 4})
     display: inline-block // Assures the FLIP animation script (fade-in-ou for li elements)
+    cursor: pointer
+    img
+      transition: opacity .2s ease
   li:last-child
     margin-bottom: $spacing
+  li:hover
+    img
+      opacity: .75
   .product-TitleDate
     display: flex
     flex-wrap: nowrap
@@ -69,10 +75,6 @@ img
     margin-bottom: $spacing
   h2, p
     display: inline
-
-.productsItem
-  li
-    cursor: pointer
 
 .productItem, .profileItem
   ul
@@ -111,7 +113,10 @@ img
       height: auto
       max-width: 100%
       max-height: calc(100vmin - (2 * #{$spacing}))
-      cursor: url(~/assets/images/open-icon.svg), zoom-in
+      cursor: pointer
+      transition: opacity .2s ease
+      &:hover
+        opacity: .75
   .product-Image.active
     max-width: 100%
     img
