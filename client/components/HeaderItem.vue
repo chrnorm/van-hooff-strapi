@@ -14,60 +14,22 @@
       </router-link>
 
       <ul class="menu menu-Filter" v-if="this.$route.path === '/projects'">
-        <li>
-          <p @click="$bus.$emit('filterClick')">
+        <router-link tag="li" to="/projects">
+          <p>
             <span>All Projects</span>
             <span>/</span>
           </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Art</span>
-            <span>/</span>
+        </router-link>
+        <router-link to="/" tag="li" v-for="project in filteredList" :key="project.id">
+          <p>
+            <span>{{ project.categories.title }} / &nbsp;</span>
           </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Transformation</span>
-            <span>/</span>
-          </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Living</span>
-            <span>/</span>
-          </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Working</span>
-            <span>/</span>
-          </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Recreation</span>
-            <span>/</span>
-          </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Study</span>
-            <span>/</span>
-          </p>
-        </li>
-        <li>
-          <p @click="$bus.$emit('filterClick')">
-            <span>Concept</span>
-            <span>/</span>
-          </p>
-        </li>
+        </router-link>
         <br>
         <br>
         <router-link tag="li" to="/Profile">
           <p>
             <span>Profile</span>
-            <span>/</span>
           </p>
         </router-link>
       </ul>
@@ -88,8 +50,54 @@
   </transition>
 </template>
 
+<script>
+import Strapi from 'strapi-sdk-javascript/build/main'
+const apiUrl = process.env.API_URL || 'http://localhost:1337'
+const strapi = new Strapi(apiUrl)
+
+export default {
+  data() {
+    return {
+      query: ''
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.projects.filter(project => {
+        return project.title.toLowerCase().includes(this.query.toLowerCase())
+      })
+    },
+    projects() {
+      return this.$store.getters['projects/list']
+    }
+  },
+  async fetch({ store }) {
+    store.commit('projects/emptyList')
+    const response = await strapi.request('post', '/graphql', {
+      data: {
+        query: `query {
+            projects {
+              categories {
+                title
+              }
+            }
+          }
+          `
+      }
+    })
+    response.data.projects.forEach(project => {
+      store.commit('projects/add', {
+        id: project.id || project._id,
+        ...project
+      })
+    })
+  }
+}
+</script>
+
+
 <style lang="sass">
-$spacing: 24px
+@import '~/assets/styling/variables.sass'
 
 .headerItem
   position: fixed
@@ -100,7 +108,7 @@ $spacing: 24px
   .menu
     position: relative
     display: inline-block
-    width: 244px
+    width: 200px
     margin-left: $spacing
     li
       display: inline-block
@@ -109,13 +117,6 @@ $spacing: 24px
         cursor: pointer
       span:first-child:hover
         text-decoration: underline
-      span:last-child
-        margin-left: 6px
-        margin-right: 6px
-        // background: purple
-    li:last-child
-      span:last-child
-        display: none
   .menu-arrow
     padding-top: 28px
     padding-right: $spacing
