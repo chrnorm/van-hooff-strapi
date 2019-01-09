@@ -40,7 +40,7 @@ export default {
       })
     },
     projects() {
-      console.log(this.$store.getters['projects/list'])
+      // console.log(this.$store.getters['projects/list'])
       return this.$store.getters['projects/list']
     }
   },
